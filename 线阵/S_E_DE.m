@@ -4,7 +4,7 @@ clc;
 a=linspace(0,2*pi);
 b=linspace(0,2*pi);
 [theta,phi]=meshgrid(a,b);
-N=10;
+N=19;
 %共同条件定义
 lamda=100;%单位毫米
 k=2*pi/lamda;%波传播常数

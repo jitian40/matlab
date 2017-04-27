@@ -20,8 +20,9 @@ L=N*d;%阵列的长度
 R0=10^(abs(SLL)/20);
 Zero=4.603*sinh(pi*B)/pi/B-10;
 B=solve(Zero,B);
-
-x=linspace(-N*d/2,N*d/2,N);%在[-L/2,L/2]均等分取N个点
+M=fix(N/2);
+%阵元相关计算
+x=-M*d:d:M*d;%在[-L/2,L/2]均等分取N个点
 Im=besselj(0,1j.*pi.*B.*sqrt(1-(2.*x/N/d).^2));
-Im=eval(Im./max(Im));
+Im=eval(Im./max(Im));  %取激励幅度分布（阵元个数为奇数已经验证）
 
