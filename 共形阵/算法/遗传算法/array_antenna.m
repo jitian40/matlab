@@ -56,102 +56,11 @@ end
     mesh(X,Y,Z);
     
 
-%适应度评价函数:改进的均方差评价函数
-function fitness=fit(req_dirfun,rec_dirfun)
-    variance=sum(sum((((req_dirfun-rec_dirfun)./req_dirfun).^2)/10000));
-    covariance=sqrt(variance);
-    fitness=1./(1+covariance^0.3);
-end
-%总体方向图函数
-function F=f(theta,phi,pop_num,I_phi)%参数包含球坐标下theta角与phi角，激励相位的初始位置，激励相位数组
-    phi_Z=[0,pi/2,pi,3*pi/2];%单元分布角度
-    d_busbar=[0,15,30,45];
-    R=40;%地面圆半径
-    Phi_Y=atan(2);%椎体底角
-    e=zeros(100,100);
-        for Ai=1:length(phi_Z)%确定层数
-         zarc=phi_Z(Ai);%柱坐标下phi角
-            for Zi=1:length(d_busbar)%母线上单元方向图的叠加
-                phi_i=I_phi(pop_num+Ai*Zi);%单元激励相位
-                d_z=2*d_busbar(Zi)./sqrt(5);%计算Zn
-                e=e+xchange(zarc,Phi_Y,theta,phi,phi_i,d_z,R);%方向图函数的复数域的叠加(matlab可以直接计算复数)
-            end
-        end
-      F=abs(e)./max(max(abs(e)));%总体方向图函数归一化
-end
-%旋转函数依赖于椎体的旋转函数
-function dirGrah=xchange(zarc,yarc,t,p,phi_i,zn,R)%单元天线的排列角度，参数包含圆锥体的底角，球坐标下theta角与phi角，激励相位，单元的Z坐标值，椎体的底面圆的半径
-    Z_arc=zarc+pi;
-    Y_arc=2*pi-yarc;
-    %绕着Z轴旋转Z_arc
-    theta_1=t;
-    phi_1=p-Z_arc;
-    %绕着Y轴旋转Y_arc;
-    theta_2=acos(cos(theta_1).*cos(Y_arc)-sin(theta_1).*cos(phi_1).*sin(Y_arc));%变化后的theta角
-    Phi_2=atan((sin(theta_1).*sin(phi_1))./(cos(theta_1).*sin(Y_arc)+sin(theta_1).*cos(phi_1).*cos(Y_arc)));%变化后的phi角
-    dirGrah=sin(5/2.*pi.*cos(theta_2))./(5*sin(pi/2.*cos(theta_2))).*exp(1i*(phi_i+2*pi/15.*(sin(t).*cos(p-zarc).*(R-zn/2)+zn.*cos(t))));
-end
-
-%进制转化函数
-function BB=bin_dec(popsize,num,pop)
-    %将二进制基因转化为十进制相位
-    BB=zeros(popsize,num);%生成一个全为零的矩阵
-    for n=1:popsize
-        for n1=1:num
-            n3=0;
-            for n2=(n1-1)*7+1:n1*7
-                BB(n,n1)=BB(n,n1)+pop(n,n2)*2^n3;
-                n3=n3+1;
-            end
-        end
-    end
-end
 
 
-%轮盘赌选择算子，生成新的种群
-function NewPop=Roulette(fit,pop)
-    fitvalue=fit./sum(fit);
-    fitvalue1=cumsum(fitvalue);
-    [px,py]=size(pop);
-    newpop=zeros(px,py);
-    rns=sort(rand(1,px));%随机转动px次轮盘
-    fitin=1;
-    newin=1;
-    while newin<=px
-         if(rns(newin)<fitvalue1(fitin))
-             newpop(newin,:)=pop(fitin,:);%如果选中，保留该个体
-             newin=newin+1;
-         else
-             fitin=fitin+1;
-         end
-    end
-    NewPop=newpop;
-end
 
-%交叉算子
-function NewPop1=Cross(Pc,pop)
-    [px,py]=size(pop);
-    newpops=zeros(px,py);
-    for i=1:2:px-1        %px一般取偶数值
-        if(rand<Pc)       %每次进行随机交叉
-            copoint=round(rand*py);%随机确定交叉点
-            newpops(i,:)=[pop(i,1:copoint),pop(i+1,copoint+1:py)];
-            newpops(i+1,:)=[pop(i+1,1:copoint),pop(i,copoint+1:py)];
-        else
-            newpops(i,:)=pop(i,:);
-            newpops(i+1,:)=pop(i+1,:);
-        end
-    end
-    NewPop1=newpops;
-end
-%变异算子
-function NewPop2=variate(Pv,pop)
-        [px,py]=size(pop);
-    for i=1:px        %px一般取偶数值
-        if(rand<Pv)       %每次进行随机变异
-            copoint=round(rand*(py-1));%随机确定变异点
-            pop(i,copoint+1)=not(pop(i,copoint+1));%对变异点取非
-        end
-    end
-    NewPop2=pop;
-end
+
+
+
+
+
