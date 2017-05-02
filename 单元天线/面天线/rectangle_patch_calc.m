@@ -22,7 +22,3 @@ end
 materail_dertalenght=0.412*(materail_effepsilon+0.3)*(Width/materail_height+0.264)/(materail_effepsilon-0.258)/(Width/materail_height+0.8);
 %贴片长度(mm)
 Length=c/2/materail_frequency/sqrt(materail_effepsilon)-2*materail_dertalenght;
-%介质基片的宽度
-materail_width=Width+0.2*c/materail_frequency/sqrt(materail_effepsilon);
-%介质基片的长度
-materail_length=Length+0.2*c/materail_frequency/sqrt(materail_effepsilon);

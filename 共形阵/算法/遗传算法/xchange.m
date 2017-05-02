@@ -8,5 +8,6 @@ function dirGrah=xchange(zarc,yarc,t,p,phi_i,zn,R)%µ¥ÔªÌìÏßµÄÅÅÁÐ½Ç¶È£¬²ÎÊý°üº¬Ô
     %ÈÆ×ÅYÖáÐý×ªY_arc;
     theta_2=acos(cos(theta_1).*cos(Y_arc)-sin(theta_1).*cos(phi_1).*sin(Y_arc));%±ä»¯ºóµÄtheta½Ç
     Phi_2=atan((sin(theta_1).*sin(phi_1))./(cos(theta_1).*sin(Y_arc)+sin(theta_1).*cos(phi_1).*cos(Y_arc)));%±ä»¯ºóµÄphi½Ç
-    dirGrah=sin(5/2.*pi.*cos(theta_2))./(5*sin(pi/2.*cos(theta_2))).*exp(1i*(phi_i+2*pi/15.*(sin(t).*cos(p-zarc).*(R-zn/2)+zn.*cos(t))));
+    e=sin(5/2.*pi.*cos(theta_2))./(5*sin(pi/2.*cos(theta_2)));%µ¥ÔªÌìÏß·½ÏòÍ¼º¯Êý
+    dirGrah=e.*exp(1i*(phi_i+2*pi/15.*(sin(t).*cos(p-zarc).*(R-zn/2)+zn.*cos(t))));
 end

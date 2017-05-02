@@ -15,7 +15,6 @@ for n=1:popsize-1
     end
 end
 I_phi=BB*(2*pi/(2^7-1));%求出每个个体的激励相位
-
 Theta=linspace(0,pi);%与Z坐标轴的夹角
 Phi=linspace(0,2*pi);%投影角
 [theta,phi]=meshgrid(Theta,Phi);
