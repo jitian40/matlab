@@ -1,5 +1,5 @@
 %Ğı×ªº¯ÊıÒÀÀµÓÚ×µÌåµÄĞı×ªº¯Êı
-function dirGrah=xchange(zarc,yarc,t,p,phi_i,zn,R)%µ¥ÔªÌìÏßµÄÅÅÁĞ½Ç¶È£¬²ÎÊı°üº¬Ô²×¶ÌåµÄµ×½Ç£¬Çò×ø±êÏÂtheta½ÇÓëphi½Ç£¬¼¤ÀøÏàÎ»£¬µ¥ÔªµÄZ×ø±êÖµ£¬×µÌåµÄµ×ÃæÔ²µÄ°ë¾¶
+function dirGrah=xchange(zarc,yarc,t,p,zn,R)%µ¥ÔªÌìÏßµÄÅÅÁĞ½Ç¶È£¬²ÎÊı°üº¬Ô²×¶ÌåµÄµ×½Ç£¬Çò×ø±êÏÂtheta½ÇÓëphi½Ç£¬¼¤ÀøÏàÎ»£¬µ¥ÔªµÄZ×ø±êÖµ£¬×µÌåµÄµ×ÃæÔ²µÄ°ë¾¶
     Z_arc=zarc+pi;
     Y_arc=2*pi-yarc;
     %ÈÆ×ÅZÖáĞı×ªZ_arc
@@ -10,5 +10,5 @@ function dirGrah=xchange(zarc,yarc,t,p,phi_i,zn,R)%µ¥ÔªÌìÏßµÄÅÅÁĞ½Ç¶È£¬²ÎÊı°üº¬Ô
     Phi_2=atan((sin(theta_1).*sin(phi_1))./(cos(theta_1).*sin(Y_arc)+sin(theta_1).*cos(phi_1).*cos(Y_arc)));%±ä»¯ºóµÄphi½Ç
 %   e=sin(5/2.*pi.*cos(theta_2))./(5*sin(pi/2.*cos(theta_2)));%µ¥ÔªÌìÏß·½ÏòÍ¼º¯Êı
     e=cos(pi/2.*cos(theta_2))./sin(theta_2);
-    dirGrah=e.*exp(1i*(phi_i+2*pi/15.*(sin(t).*cos(p-zarc).*(R-zn/2)+zn.*cos(t))));
+    dirGrah=e.*exp(1i*(2*pi/15.*(sin(t).*cos(p-zarc).*(R-zn/2)+zn.*cos(t))));
 end

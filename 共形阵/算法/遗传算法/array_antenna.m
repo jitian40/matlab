@@ -11,7 +11,7 @@ req_fun=req_e./max(max(req_e));
 %算法相关参数
 num=16;%天线单元数目
 popsize=50;%种群个体数目
-generations=1000;%进化代数
+generations=500;%进化代数
 P_cross=0.8;%交叉概率,越大收敛越快
 P_variation=0.05;%变异概率
 alpha=0.5;%适应度函数参数，越小变化越快
