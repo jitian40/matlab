@@ -22,3 +22,7 @@ end
 materail_dertalenght=0.412*(materail_effepsilon+0.3)*(Width/materail_height+0.264)/(materail_effepsilon-0.258)/(Width/materail_height+0.8);
 %贴片长度(mm)
 Length=c/2/materail_frequency/sqrt(materail_effepsilon)-2*materail_dertalenght;
+
+%同轴线馈电点
+
+L1=Length/2*(1-1/sqrt(materail_effepsilon));

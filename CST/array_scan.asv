@@ -18,8 +18,8 @@ Ny=4;
 My=1.5;
 dx=0.7;
 dy=0.7;
-Im=[1.8,1,1,1.8];
-s_theta1=20;%定义扫描角度
+Im=[0.5,1,1,0.5];
+s_theta1=10;%定义扫描角度
 s_theta=s_theta1/180*pi;
 %计算Sx
 Sx=0;
@@ -49,6 +49,7 @@ X=S1.*sin(theta).*cos(phi);
 Y=S1.*sin(theta).*sin(phi);
 Z=S1.*cos(theta);
 axis([-1 1 -1 1])
+colormap(jet);
 surf(X,Y,Z);
 alpha(0.5)
 hold on
@@ -58,7 +59,7 @@ xlabel('X');
 ylabel('Y');
 zlabel('Z(相对幅度)');
 % title({['主瓣指向\phi=0\circ,\theta=',num2str(s_theta1),'\circ']});
-title('波束由-20\circ-20\circ扫描过程');
+title('波束由-25\circ-25\circ扫描过程');
 axis on
 grid on
 

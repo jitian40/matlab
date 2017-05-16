@@ -1,11 +1,6 @@
 %ÑÝËãº¯Êý
 clear
 clc
-T=linspace(0,pi);
-P=linspace(0,2*pi);
-[theta,phi]=meshgrid(T,P);
-e=sin(pi/2.*sin(theta).*cos(phi));
-X=e.*sin(theta).*cos(phi);
-Y=e.*sin(theta).*sin(phi);
-Z=e.*cos(theta);
-mesh(X,Y,Z);
+line([-1 1],[0 0],[0 0])
+line([0 0],[-1 1],[0 0])
+line([0 0],[0 0],[0 1])
