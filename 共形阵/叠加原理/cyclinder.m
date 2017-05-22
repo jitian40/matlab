@@ -2,13 +2,13 @@
 clear all;
 clc;
 %相关参数
-a=pi/100:pi/100:pi;
-b=pi/50:pi/50:2*pi;
+a=1:1:180;
+b=2:2:360;
 [theta,phi]=meshgrid(a,b);
 e=f(theta,phi);
-X=e.*sin(theta).*cos(phi);
-Y=e.*sin(theta).*sin(phi);
-Z=e.*cos(theta);
+X=e.*sind(theta).*cosd(phi);
+Y=e.*sind(theta).*sind(phi);
+Z=e.*cosd(theta);
 mesh(X,Y,Z);
 xlabel('X');
 ylabel('Y');

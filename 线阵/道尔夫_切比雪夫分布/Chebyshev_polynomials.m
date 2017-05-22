@@ -3,7 +3,7 @@ clear;
 clc;
 N=input('天线单元个数：');
 P=N-1;
-syms x;
+x=linspace(-1.1,1.1);
 Tp=cos(P.*acos(x));
 plot(x,Tp,'r');
 xlabel('X');

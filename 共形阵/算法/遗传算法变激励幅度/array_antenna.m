@@ -4,7 +4,7 @@ clc;
 a=pi/100:pi/100:pi;
 b=pi/50:pi/50:2*pi;
 [theta,phi]=meshgrid(a,b);
-trans_val=zeros(100,100);%一个过渡值存着最优个体
+trans_val=zeros(length(a),length(b));%一个过渡值存着最优个体
 %定义拟合函数
 req_e=sin(4*pi.*cos(theta))./sin(0.4*pi.*(cos(theta)-1));
 req_fun=req_e./max(max(req_e));
@@ -15,7 +15,7 @@ generations=500;%进化代数
 P_cross=0.8;%交叉概率,越大收敛越快
 P_variation=0.05;%变异概率
 alpha=0.5;%适应度函数参数，越小变化越快
-chromlength=7*num ;%基因长度, 每个单元的相位用 7 位二进制数表示
+chromlength=4*num ;%基因长度, 每个单元的相位用 7 位二进制数表示
 pop=round(rand(popsize,chromlength));%随机产生初始化种群，popsize*chromlength
 trans_phase=zeros(1,num);%一个过渡值存着最优个体对应的激励相位
 fits=zeros(1,popsize);%定义种群适应度矩阵
@@ -26,7 +26,8 @@ t=fitness;
 while(gene<generations)
 %将二进制基因转化为十进制基因
 BB=bin_dec(popsize,num,pop);
-I_phi=BB*(2*pi/(2^7-1));%求出每个个体的激励相位
+% I_phi=BB*(2*pi/(2^7-1));%求出每个个体的激励相位
+I_phi=BB;%
 %适应度计算
 for pop1=0:popsize-1
     rec_fun=f(theta,phi,pop1+1,I_phi);%得到的方向图函数
@@ -50,9 +51,9 @@ P_variation=P_variation+0.4/generations;
 gene=gene+1;
 end
 %画图函数，具象化
-    X=trans_val.*sin(theta).*cos(phi);
-    Y=trans_val.*sin(theta).*sin(phi);
-    Z=trans_val.*cos(theta);
+    X=trans_val.*sind(theta).*cosd(phi);
+    Y=trans_val.*sind(theta).*sind(phi);
+    Z=trans_val.*cosd(theta);
     mesh(X,Y,Z);
     
 

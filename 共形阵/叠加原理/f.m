@@ -1,11 +1,11 @@
 %总体方向图函数
 function F=f(theta,phi)%参数包含球坐标下theta角与phi角，激励相位的初始位置，激励相位数组
-    phi_Z=[0,pi/2,pi,3*pi/2];%单元分布角度
+    phi_Z=[0,90,180,270];%单元分布角度
     d_busbar=[0,15,30,45];%单元分布层数
     R=40;%底面圆半径
-    Phi_Y=atan(2);%椎体底角
+    Phi_Y=atand(2);%椎体底角
 %     Phi_Y=pi/2;%圆柱体
-    e=zeros(100,100);
+    e=zeros(180,180);
         for Ai=1:length(phi_Z)%确定层数
          zarc=phi_Z(Ai);%柱坐标下phi角
             for Zi=1:length(d_busbar)%母线上单元方向图的叠加

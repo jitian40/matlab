@@ -21,12 +21,13 @@ A=acosh(R0)/pi;%参数
 sigma=N_/sqrt(A^2+(N_-0.5)^2);%波瓣展宽因子
 x=N.*d.*cos(theta./180.*pi);
 M=fix(N/2);
+Zn=zeros(1,N);
 %激励幅度计算
 if mod(N,2)==1
     Zn=(-M:M)*d;
 else 
-    Zn(M+1,N)=(2*(0:M-1)+1)/2;
-    Zn(1:M)=fliplr(-Zn);
+    Zn(M+1:N)=(2.*(0:M-1)+1)./2;
+    Zn(1:M)=fliplr(-Zn(M+1:N));
 end
 s11=0;
 for I=1:N_-1
