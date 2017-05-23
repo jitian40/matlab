@@ -7,8 +7,9 @@ function dirGrah=xchange(zarc,yarc,t,p,zn,R)%µ¥ÔªÌìÏßµÄÅÅÁĞ½Ç¶È£¬²ÎÊı°üº¬Ô²×¶Ìåµ
     phi_1=p-Z_arc;
     %ÈÆ×ÅYÖáĞı×ªY_arc;
     theta_2=acosd(cosd(theta_1).*cosd(Y_arc)-sind(theta_1).*cosd(phi_1).*sind(Y_arc));%±ä»¯ºóµÄtheta½Ç
-    Phi_2=atand((sind(theta_1).*sind(phi_1))./(cosd(theta_1).*sind(Y_arc)+sind(theta_1).*cosd(phi_1).*cosd(Y_arc)));%±ä»¯ºóµÄphi½Ç
+    phi_2=atand((sind(theta_1).*sind(phi_1))./(cosd(theta_1).*sind(Y_arc)+sind(theta_1).*cosd(phi_1).*cosd(Y_arc)));%±ä»¯ºóµÄphi½Ç
 %   e=sin(5/2.*pi.*cos(theta_2))./(5*sin(pi/2.*cos(theta_2)));%µ¥ÔªÌìÏß·½ÏòÍ¼º¯Êı
-    e=cos(pi/2.*cosd(theta_2))./sind(theta_2);
+    e=unit_antenna(theta_2,phi_2);
+%     e=cos(pi/2.*cosd(theta_2))./sind(theta_2);
     dirGrah=e.*exp(1i*(2*pi/15.*(sind(t).*cosd(p-zarc).*(R-zn/2)+zn.*cosd(t))));
 end

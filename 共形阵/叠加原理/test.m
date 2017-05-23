@@ -1,0 +1,11 @@
+clear all;
+clc;
+theta_i=0:0.1:180;
+phi_i=0:0.1:360;
+mwsprojName = 'Round_patch.cst';
+S1=data_manger(mwsprojName);
+[theta,phi]=meshgrid(theta_i,phi_i);
+X=S1.*sind(theta).*cosd(phi);
+Y=S1.*sind(theta).*sind(phi);
+Z=S1.*cosd(theta);
+mesh(X,Y,Z);

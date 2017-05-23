@@ -1,10 +1,6 @@
-%圆形贴片天线CST数据读取
-clear all;
-clc;
-Theta=0:5:180;
-Phi=0:5:360;
-[theta,phi]=meshgrid(Theta,Phi);
-mwsprojName = 'dispole.cst';
+function eFun = get_farfiled( mwsprojName )
+%GET_FARFILED 此处显示有关此函数的摘要
+%   此处显示详细说明
 [ CSTResultReader,CSTResultReaderH,mwsProjName,libname] = cst_load(mwsprojName);
 loadlibrary(CSTResultReader,CSTResultReaderH);%加载cst dll
 sHandle.m_pProj = 0;
@@ -56,12 +52,6 @@ nDataSizeTheta=0;
 assert(~ret)
 %获取远场数据
 
-%计算步进度数
-PhiStepDeg = 360/nDataSizePhi;
-ThetaStepDeg = 180/(nDataSizeTheta-1);
-PhiStepRad = 2*pi/double(nDataSizePhi);
-ThetaStepRad = pi/double((nDataSizeTheta-1));
-
 %获取对应点的值,
 FFDataSize = (3-isApprox)*nDataSizeTheta*nDataSizePhi;
 FFre = zeros(1,FFDataSize,'double');
@@ -95,11 +85,7 @@ end
 e=reshape(FFabs,37,72);
 e=e';
 e(nDataSizePhi+1:nDataSizePhi+1,1:nDataSizeTheta)=e(1:1,1:nDataSizeTheta);
-X=e.*sin(theta./180.*pi).*cos(phi./180.*pi);
-Y=e.*sin(theta./180.*pi).*sin(phi./180.*pi);
-Z=e.*cos(theta./180.*pi);
-mesh(X,Y,Z);
-axis equal
+eFun=e;%返回值
 %关闭工程
 [ret, sHandle] = calllib(libname, 'CST_CloseProject', sHandle);
 assert(~ret)
@@ -109,4 +95,6 @@ unloadlibrary(libname)
 
 %清理内存，好像很重要啊。。。。。
 clear i j k n X Y xmargin ymargin zmargin symbol ret iResultNumber MEColor MFColor nzLevel zLevel sHandle resSize sTree3DResName nDataSizePhi nDataSizeTheta
+
+end
 
