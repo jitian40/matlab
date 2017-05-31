@@ -1,0 +1,46 @@
+%圆环阵列方向图函数
+Theta=linspace(-pi,pi);
+Phi=0:pi/90:2*pi;
+[theta,phi]=meshgrid(Theta,Phi);
+Radio= input('圆环半径(波长的倍数)：');
+       N=input('阵元个数：');
+Thetap=input('主波瓣指向theta角：');
+Phip=  input('主波瓣指向phi角：');
+%参数计算
+beta=2*pi/N;%阵元间的夹角
+alpha=-2*pi*Radio*sin(Thetap).*cos(Phip-(1:N).*beta);
+%阵列因子计算
+S=0;
+for k=1:N
+   S=S+exp(1j*2*pi*Radio.*sin(theta).*cos(phi-k*beta)+1j*alpha(k)); 
+end
+%单元因子
+unit_fun=cos(pi/2.*cos(theta));
+S=abs(S).*unit_fun;
+%——
+S=abs(S)./max(max(abs(S)));
+figure(1)
+X=S.*sin(theta).*cos(phi);
+Y=S.*sin(theta).*sin(phi);
+Z=S.*cos(theta);
+mesh(X,Y,Z);
+xlabel('X');
+ylabel('Y');
+zlabel('Z');
+title('圆环阵三维方向图');
+figure(2)
+polar(Theta,S(1:1,:));
+title('圆环阵E面极坐标方向图');
+figure(3)
+plot(Theta/pi*180,20*log10(S(1:1,:)));
+xlabel('\theta(\circ)');
+ylabel('幅度/dB');
+title('圆环阵E面方向图');
+figure(4)
+polar(Theta,S(46:46,:));
+title('圆环阵H面极坐标方向图');
+figure(5)
+plot(Theta/pi*180,20*log10(S(46:46,:)));
+xlabel('\theta(\circ)');
+ylabel('幅度/dB');
+title('圆环阵H面方向图');

@@ -6,7 +6,8 @@ b=pi/50:pi/50:2*pi;
 [theta,phi]=meshgrid(a,b);
 trans_val=zeros(100,100);%一个过渡值存着最优个体
 %定义拟合函数
-req_e=sin(4*pi.*cos(theta))./sin(0.4*pi.*(cos(theta)-1));
+
+% req_e=cos(6*theta).*(theta<pi/12);
 req_fun=req_e./max(max(req_e));
 %算法相关参数
 num=16;%天线单元数目

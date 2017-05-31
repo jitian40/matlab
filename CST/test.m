@@ -1,7 +1,5 @@
-
-figure
-line([-1 1],[0 0],[0 0])
-line([0 0],[-1 1],[0 0])
-line([0 0],[0 0],[0 1])
-view(30,10)
-axis off
+clear;
+clc;
+theta=linspace(0,2*pi);
+e=cos(6*theta).*(theta<pi/12);
+polar(theta,e,'r');

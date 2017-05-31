@@ -1,7 +1,7 @@
 %ÑÝËãº¯Êý
 clear
 clc
-T=linspace(0,360);
+T=linspace(0,180);
 P=linspace(0,360);
 [theta,phi]=meshgrid(T,P);
 N=12;
@@ -20,4 +20,4 @@ view(30,10)
 axis equal
 
 figure(2)
-polar(T/180*pi,e(1:1,:));
+polar

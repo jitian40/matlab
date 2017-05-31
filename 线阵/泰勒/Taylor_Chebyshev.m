@@ -52,11 +52,11 @@ end
 S=cosh(pi*A).*sin(pi.*x).*s1./pi./x./s2; %归一化方向图函数
 S=abs(S)./max(abs(S));
 s=20*log10(S);
-subplot(1,2,1)
+% subplot(1,2,1)
 plot(theta,s,'r');
 title({[num2str(N),'泰勒线源幅度方向图','SLL',num2str(SLL),'dB,','N_=',num2str(N_)]});
 xlabel('角度\theta/(\circ)');
 ylabel('相对幅度/dB');
 grid on;
-subplot(1,2,2)
-polar(theta./180.*pi,S);
+% subplot(1,2,2)
+% polar(theta./180.*pi,S);
