@@ -4,9 +4,7 @@ clc
 T=linspace(0,360);
 P=linspace(0,360);
 [theta,phi]=meshgrid(T,P);
-N=12;
-d=0.6;
-e=sin(N*pi*d.*(cosd(theta)-1))./N./sin(pi*d.*(cosd(theta)-1));
+e=cos(pi/2.*cosd(theta))./sind(theta).*(phi<180);
 X=e.*sind(theta).*cosd(phi);
 Y=e.*sind(theta).*sind(phi);
 Z=e.*cosd(theta);

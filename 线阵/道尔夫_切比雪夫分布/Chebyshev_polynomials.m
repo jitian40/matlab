@@ -8,4 +8,5 @@ Tp=cos(P.*acos(x));
 plot(x,Tp,'r');
 xlabel('X');
 ylabel('Y');
+title('9阶切比雪夫多项式');
 new_fig_handle=shift_axis_to_origin(gca) ;

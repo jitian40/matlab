@@ -1,12 +1,12 @@
 clear all;
 clc;
 %天线相关参数
-a=pi/100:pi/100:pi;
-b=pi/50:pi/50:2*pi;
+a=1:1:180;
+b=2:2:360;
 [theta,phi]=meshgrid(a,b);
-trans_val=zeros(100,100);%一个过渡值存着最优个体
+trans_val=zeros(length(a),length(b));%一个过渡值存着最优个体
 %定义拟合函数
-req_e=sin(4*pi.*cos(theta))./sin(0.4*pi.*(cos(theta)-1));
+req_e=sin(4*pi.*cosd(theta))./sin(0.4*pi.*(cosd(theta)-1));
 % req_e=cos(6*theta).*(theta<pi/12);
 req_fun=req_e./max(max(req_e));
 %算法相关参数
@@ -51,9 +51,9 @@ P_variation=P_variation+0.4/generations;
 gene=gene+1;
 end
 %画图函数，具象化
-    X=trans_val.*sin(theta).*cos(phi);
-    Y=trans_val.*sin(theta).*sin(phi);
-    Z=trans_val.*cos(theta);
+    X=trans_val.*sind(theta).*cosd(phi);
+    Y=trans_val.*sind(theta).*sind(phi);
+    Z=trans_val.*cosd(theta);
     mesh(X,Y,Z);
     
 
