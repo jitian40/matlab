@@ -6,7 +6,7 @@ b=2:2:360;
 [theta,phi]=meshgrid(a,b);
 trans_val=zeros(length(a),length(b));%一个过渡值存着最优个体
 %定义拟合函数
-req_e=sin(4*pi.*cosd(theta))./sin(0.4*pi.*(cosd(theta)-1));
+req_e=sin(4*pi.*cos(theta/180*pi))./sin(0.4*pi.*(cosd(theta)-1));
 % req_e=cos(6*theta).*(theta<pi/12);
 req_fun=req_e./max(max(req_e));
 %算法相关参数
@@ -24,6 +24,7 @@ gene=0;
 %定义适应度初始值
 fitness=0;
 t=fitness;
+et=unit_fun(theta,phi);
 while(gene<generations)
 %将二进制基因转化为十进制基因
 BB=bin_dec(popsize,num,pop);

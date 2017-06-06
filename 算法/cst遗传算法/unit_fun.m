@@ -12,7 +12,7 @@ function et= unit_fun(theta,phi)
             for Zi=1:length(d_busbar)%母线上单元方向图的叠加
                 d_z=2*d_busbar(Zi)./sqrt(5);%计算Zn
                 en=(Ai-1)*4+Zi;
-                [et(180*(en-1)+1:180*en,:),~]=xchange(zarc,Phi_Y,theta,phi,d_z,R);
+                et(180*(en-1)+1:180*en,:)=xchange(zarc,Phi_Y,theta,phi,d_z,R);
             end
         end
 end
