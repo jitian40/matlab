@@ -1,5 +1,5 @@
 %Ğı×ªº¯ÊıÒÀÀµÓÚ×µÌåµÄĞı×ªº¯Êı
-function e=xchange(zarc,yarc,t,p,zn,R)%µ¥ÔªÌìÏßµÄÅÅÁĞ½Ç¶È£¬²ÎÊı°üº¬Ô²×¶ÌåµÄµ×½Ç£¬Çò×ø±êÏÂtheta½ÇÓëphi½Ç£¬¼¤ÀøÏàÎ»£¬µ¥ÔªµÄZ×ø±êÖµ£¬×µÌåµÄµ×ÃæÔ²µÄ°ë¾¶
+function e=xchange(zarc,yarc,t,p)%µ¥ÔªÌìÏßµÄÅÅÁĞ½Ç¶È£¬²ÎÊı°üº¬Ô²×¶ÌåµÄµ×½Ç£¬Çò×ø±êÏÂtheta½ÇÓëphi½Ç£¬¼¤ÀøÏàÎ»£¬µ¥ÔªµÄZ×ø±êÖµ£¬×µÌåµÄµ×ÃæÔ²µÄ°ë¾¶
     Z_arc=zarc+180;
     Y_arc=360-yarc;
 %     ÈÆ×ÅZÖáĞı×ªZ_arc
@@ -11,5 +11,5 @@ function e=xchange(zarc,yarc,t,p,zn,R)%µ¥ÔªÌìÏßµÄÅÅÁĞ½Ç¶È£¬²ÎÊı°üº¬Ô²×¶ÌåµÄµ×½Ç£
 %   e=sin(5/2.*pi.*cos(theta_2))./(5*sin(pi/2.*cos(theta_2)));%µ¥ÔªÌìÏß·½ÏòÍ¼º¯Êı
     e=unit_antenna(theta_2,phi_2);
 %     e=cos(pi/2.*cosd(theta_2))./sind(theta_2);
-%     dirGrah=e.*exp(1i*(2*pi/15.*(sind(t).*cosd(p-zarc).*(R-zn/2)+zn.*cosd(t))));ss
+%     dirGrah=e.*exp(1i*(2*pi/15.*(sind(t).*cosd(p-zarc).*(R-zn/2)+zn.*cosd(t))));
 end

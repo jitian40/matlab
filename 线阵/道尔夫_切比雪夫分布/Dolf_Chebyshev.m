@@ -35,6 +35,7 @@ end
 Im=abs(sym2poly(collect(S)));%求激励电流
 
 %************************
+figure(1)
 %求方向图函数以及画图
 f=subs(S,t,exp(1j*2*pi*d.*cos(theta./180.*pi)));%求方向图函数
 s=20.*log10(abs(f)./max(abs(f)));%求幅度函数
@@ -45,8 +46,8 @@ xlabel('角度\theta/(\circ)');
 ylabel('相对幅度/dB');
 grid on;
 subplot(1,2,2)
-polar(theta/180*pi,abs(f)./max(abs(f)));
-
+F=abs(f)./max(abs(f));
+polar(theta/180*pi,F);
 %**************************
 
 %**************************

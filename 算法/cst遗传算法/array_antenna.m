@@ -16,7 +16,7 @@ generations=500;%进化代数
 P_cross=0.8;%交叉概率,越大收敛越快
 P_variation=0.05;%变异概率
 alpha=0.5;%适应度函数参数，越小变化越快
-chromlength=7*num ;%基因长度, 每个单元的相位用 7 位二进制数表示
+chromlength=7*num;%基因长度, 每个单元的相位用 7 位二进制数表示
 pop=round(rand(popsize,chromlength));%随机产生初始化种群，popsize*chromlength
 trans_phase=zeros(1,num);%一个过渡值存着最优个体对应的激励相位
 fits=zeros(1,popsize);%定义种群适应度矩阵
@@ -31,8 +31,9 @@ BB=bin_dec(popsize,num,pop);
 I_phi=BB*(2*pi/(2^7-1));%求出每个个体的激励相位
 %适应度计算
 for pop1=0:popsize-1
-    rec_fun=f(theta,phi,pop1+1,I_phi);%得到的方向图函数
-    fitness=fit(req_fun,rec_fun);
+    rec_fun=f(theta,phi,pop1+1,I_phi,et);%得到的方向图函数
+%     fitness=fit(req_fun,rec_fun);
+    fitness=para(theta,rec_fun);
     fits(pop1+1)=fitness;
     if t<fitness %保留最优解
        t=fitness;
