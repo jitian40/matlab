@@ -1,13 +1,14 @@
 clear all;
 clc;
 %天线相关参数
-a=pi/100:pi/100:pi;
-b=pi/50:pi/50:2*pi;
+a=1:1:180;
+b=2:2:360;
 [theta,phi]=meshgrid(a,b);
 trans_val=zeros(length(a),length(b));%一个过渡值存着最优个体
 %定义拟合函数
-req_e=sin(4*pi.*cos(theta))./sin(0.4*pi.*(cos(theta)-1));
-req_fun=req_e./max(max(req_e));
+% req_e=sin(4*pi.*cos(theta/180*pi))./sin(0.4*pi.*(cosd(theta)-1));
+% req_e=cos(6*theta).*(theta<pi/12);
+% req_fun=req_e./max(max(req_e));
 %算法相关参数
 num=16;%天线单元数目
 popsize=50;%种群个体数目
@@ -15,7 +16,7 @@ generations=500;%进化代数
 P_cross=0.8;%交叉概率,越大收敛越快
 P_variation=0.05;%变异概率
 alpha=0.5;%适应度函数参数，越小变化越快
-chromlength=4*num ;%基因长度, 每个单元的相位用 7 位二进制数表示
+chromlength=7*num;%基因长度, 每个单元的相位用 7 位二进制数表示
 pop=round(rand(popsize,chromlength));%随机产生初始化种群，popsize*chromlength
 trans_phase=zeros(1,num);%一个过渡值存着最优个体对应的激励相位
 fits=zeros(1,popsize);%定义种群适应度矩阵
@@ -23,15 +24,17 @@ gene=0;
 %定义适应度初始值
 fitness=0;
 t=fitness;
+et=unit_fun(theta,phi);
 while(gene<generations)
 %将二进制基因转化为十进制基因
 BB=bin_dec(popsize,num,pop);
 % I_phi=BB*(2*pi/(2^7-1));%求出每个个体的激励相位
-I_phi=BB;%
+  I_phi=BB/(2^7-1);
 %适应度计算
 for pop1=0:popsize-1
-    rec_fun=f(theta,phi,pop1+1,I_phi);%得到的方向图函数
-    fitness=fit(req_fun,rec_fun);
+    rec_fun=f(theta,phi,pop1+1,I_phi,et);%得到的方向图函数
+%     fitness=fit(req_fun,rec_fun);
+    fitness=para(theta,rec_fun);
     fits(pop1+1)=fitness;
     if t<fitness %保留最优解
        t=fitness;

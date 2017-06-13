@@ -5,7 +5,7 @@ function BB=bin_dec(popsize,num,pop)
     for n=1:popsize
         for n1=1:num
             n3=0;
-            for n2=(n1-1)*4+1:n1*4
+            for n2=(n1-1)*7+1:n1*7
                 BB(n,n1)=BB(n,n1)+pop(n,n2)*2^n3;
                 n3=n3+1;
             end

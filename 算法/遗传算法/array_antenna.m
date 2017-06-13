@@ -31,7 +31,8 @@ I_phi=BB*(2*pi/(2^7-1));%求出每个个体的激励相位
 %适应度计算
 for pop1=0:popsize-1
     rec_fun=f(theta,phi,pop1+1,I_phi);%得到的方向图函数
-    fitness=fit(req_fun,rec_fun);
+%     fitness=fit(req_fun,rec_fun);
+    fitness=para(theta,rec_fun);
     fits(pop1+1)=fitness;
     if t<fitness %保留最优解
        t=fitness;
