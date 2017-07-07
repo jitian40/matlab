@@ -1,5 +1,5 @@
 %×ÜÌå·½ÏòÍ¼º¯Êı
-function F=f(theta,phi,pop,I_phi,et)%²ÎÊı°üº¬Çò×ø±êÏÂtheta½ÇÓëphi½Ç£¬¼¤ÀøÏàÎ»µÄ³õÊ¼Î»ÖÃ£¬¼¤ÀøÏàÎ»Êı×é
+function F=f(theta,phi,pop,I_phi,et,I_im)%²ÎÊı°üº¬Çò×ø±êÏÂtheta½ÇÓëphi½Ç£¬¼¤ÀøÏàÎ»µÄ³õÊ¼Î»ÖÃ£¬¼¤ÀøÏàÎ»Êı×é
 %     phi_Z=[0,pi/2,pi,3*pi/2];%µ¥Ôª·Ö²¼½Ç¶È
     phi_Z=[0,90,180,270];
     d_busbar=[0,15,30,45];
@@ -10,10 +10,11 @@ function F=f(theta,phi,pop,I_phi,et)%²ÎÊı°üº¬Çò×ø±êÏÂtheta½ÇÓëphi½Ç£¬¼¤ÀøÏàÎ»µÄ³
          zarc=phi_Z(Ai);%Öù×ø±êÏÂphi½Ç
             for Zi=1:length(d_busbar)%Ä¸ÏßÉÏµ¥Ôª·½ÏòÍ¼µÄµş¼Ó
                 phi_i=I_phi(pop:pop,Ai*Zi:Ai*Zi);%µ¥Ôª¼¤ÀøÏàÎ»
+                I_i=I_im(pop:pop,Ai*Zi:Ai*Zi);
                 d_z=2*d_busbar(Zi)./sqrt(5);%¼ÆËãZn
                 en=(Ai-1)*4+Zi;
                 ft=et(180*(en-1)+1:180*en,:);
-                e=e+ft.*exp(1i*(2*pi/15.*(sind(theta).*cosd(phi-zarc).*(R-d_z/2)+d_z.*cosd(theta))+phi_i));%·½ÏòÍ¼º¯ÊıµÄ¸´ÊıÓòµÄµş¼Ó(matlab¿ÉÒÔÖ±½Ó¼ÆËã¸´Êı)s
+                e=e+I_i*ft.*exp(1i*(2*pi/15.*(sind(theta).*cosd(phi-zarc).*(R-d_z/2)+d_z.*cosd(theta))+phi_i));%·½ÏòÍ¼º¯ÊıµÄ¸´ÊıÓòµÄµş¼Ó(matlab¿ÉÒÔÖ±½Ó¼ÆËã¸´Êı)s
 %                 e=e+xchange(zarc,Phi_Y,theta,phi,phi_i,d_z,R);%·½ÏòÍ¼º¯ÊıµÄ¸´ÊıÓòµÄµş¼Ó(matlab¿ÉÒÔÖ±½Ó¼ÆËã¸´Êı)
             end
         end

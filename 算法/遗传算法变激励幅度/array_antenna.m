@@ -1,4 +1,4 @@
-clear all;
+ clear all;
 clc;
 %天线相关参数
 a=1:1:180;
@@ -12,9 +12,10 @@ trans_val=zeros(length(a),length(b));%一个过渡值存着最优个体
 %算法相关参数
 num=16;%天线单元数目
 popsize=50;%种群个体数目
-generations=500;%进化代数
+generations=100;%进化代数
 P_cross=0.8;%交叉概率,越大收敛越快
 P_variation=0.05;%变异概率
+rate=0.5;%选择判断因子
 alpha=0.5;%适应度函数参数，越小变化越快
 chromlength=7*num;%基因长度, 每个单元的相位用 7 位二进制数表示
 pop=round(rand(popsize,chromlength));%随机产生初始化种群，popsize*chromlength
@@ -43,7 +44,8 @@ for pop1=0:popsize-1
     end
 end
 %选择算子
-pop=Roulette(fits,pop);%生成新的种群
+% pop=Roulette(fits,pop);%生成新的种群
+pop=select(fits,pop,rate);
 %交叉与变异
 pop=Cross(P_cross,pop);%交叉
 pop=variate(P_variation,pop);%变异
@@ -52,6 +54,7 @@ P_cross=P_cross-0.4/generations;
 P_variation=P_variation+0.4/generations;
 %下一代
 gene=gene+1;
+% rate=rate-0.4/generations^2*gene^2;
 end
 %画图函数，具象化
     X=trans_val.*sind(theta).*cosd(phi);
