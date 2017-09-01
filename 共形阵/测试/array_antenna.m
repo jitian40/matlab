@@ -1,0 +1,20 @@
+clear all;
+clc;
+Theta=1:1:180;
+Phi=2:2:360;
+[theta,phi]=meshgrid(Theta,Phi);
+array_im=[0.98,0.86,0.82,0.75,0.83,0.62,0.01,0.45,0.81,0.83,0.47,0.12,0.75,0.53,0.02,0.57];
+array_phase=[3.56,3.07,3.02,3.22,3.66,5.69,3.91,6.23,3.46,3.31,2.82,0.59,4.11,2.62,0.35,3.56];
+et=unit_fun(theta,phi);
+a=0;
+array_phase=[array_phase(1:4)-a,array_phase(5:8)+a,array_phase(9:12)+a,array_phase(13:16)-a];
+F=f(theta,phi,array_phase,array_im,et);
+D=para(theta,F);
+[x,y]=find(F==1);
+X=F.*sind(theta).*cosd(phi);
+Y=F.*sind(theta).*sind(phi);
+Z=F.*cosd(theta);
+figure(1)
+mesh(X,Y,Z);
+figure(2)
+polar(Theta/180*pi,F(x:x,:));
