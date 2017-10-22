@@ -12,8 +12,8 @@ trans_val=zeros(length(a),length(b));%一个过渡值存着最优个体
 %算法相关参数 
 num=16;%天线单元数目
 popsize=50;%种群个体数目
-generations=500;%进化代数
-P_cross=0.8;%交叉概率,越大收敛越快
+generations=500;%进化代数  
+P_cross=0.8;%交叉概率,越大收敛越快  
 P_variation=0.05;%变异概率
 alpha=0.5;%适应度函数参数，越小变化越快
 chromlength=7*num;%相位基因长度, 每个单元的相位用 7 位二进制数表示

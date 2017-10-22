@@ -2,7 +2,7 @@
 clear all;
 clc;
 %相关参数
-a=1:1:180;
+a=2:2:360;
 b=2:2:360;
 [theta,phi]=meshgrid(a,b);
 et=unit_fun(theta,phi);

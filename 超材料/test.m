@@ -1,0 +1,10 @@
+clc;
+clear;
+pro_name='materia1.cst';
+s11_name='SZmax(1),Zmax(1)';
+s21_name='SZmin(1),Zmax(1)';
+[num1,s11]=get_S_Parameter(pro_name,s11_name);
+[num2,s21]=get_S_Parameter(pro_name,s21_name);
+Sre = s11(1:2:length(s11));
+Sim = s11(2:2:length(s11));
+plot(num1,Sre,num1,Sim);

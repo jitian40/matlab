@@ -29,8 +29,8 @@ et=unit_fun(theta,phi);
 while(gene<generations)
 %将二进制基因转化为十进制基因
 BB=bin_dec(popsize,num,pop);
-% I_phi=BB*(2*pi/(2^7-1));%求出每个个体的激励相位
-  I_phi=BB/(2^7-1);
+I_phi=BB*(2*pi/(2^7-1));%求出每个个体的激励相位s
+%   I_phi=BB/(2^7-1);
 %适应度计算
 for pop1=0:popsize-1
     rec_fun=f(theta,phi,pop1+1,I_phi,et);%得到的方向图函数

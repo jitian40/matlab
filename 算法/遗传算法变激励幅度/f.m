@@ -13,7 +13,7 @@ function F=f(theta,phi,pop,I_phi,et)%²ÎÊı°üº¬Çò×ø±êÏÂtheta½ÇÓëphi½Ç£¬¼¤ÀøÏàÎ»µÄ³
                 d_z=2*d_busbar(Zi)./sqrt(5);%¼ÆËãZn
                 en=(Ai-1)*4+Zi;
                 ft=et(180*(en-1)+1:180*en,:);
-                e=e+phi_i*ft.*exp(1i*(2*pi/15.*(sind(theta).*cosd(phi-zarc).*(R-d_z/2)+d_z.*cosd(theta))));%·½ÏòÍ¼º¯ÊıµÄ¸´ÊıÓòµÄµş¼Ó(matlab¿ÉÒÔÖ±½Ó¼ÆËã¸´Êı)s
+                e=e+ft.*exp(1i*(2*pi/15.*(sind(theta).*cosd(phi-zarc).*(R-d_z/2)+d_z.*cosd(theta))+phi_i));%·½ÏòÍ¼º¯ÊıµÄ¸´ÊıÓòµÄµş¼Ó(matlab¿ÉÒÔÖ±½Ó¼ÆËã¸´Êı)s
 %                 e=e+xchange(zarc,Phi_Y,theta,phi,phi_i,d_z,R);%·½ÏòÍ¼º¯ÊıµÄ¸´ÊıÓòµÄµş¼Ó(matlab¿ÉÒÔÖ±½Ó¼ÆËã¸´Êı)
             end
         end

@@ -22,7 +22,9 @@ end
 materail_dertalenght=0.412*materail_height*(materail_effepsilon+0.3)*(Width/materail_height+0.264)/(materail_effepsilon-0.258)/(Width/materail_height+0.8);
 %贴片长度(mm)
 Length=c/2/materail_frequency/sqrt(materail_effepsilon)-2*materail_dertalenght;
-
 %同轴线馈电点
-
 L1=Length/2*(1-1/sqrt(materail_effepsilon));
+
+%嵌入馈电的深度
+trans=0.001699*materail_epsilon^7+0.13761*materail_epsilon^6-6.1783*materail_epsilon^5+93.187*materail_epsilon^4-682.69*materail_epsilon^3+2561.9*materail_epsilon^2-4043*materail_epsilon+6697;
+Dig_height=trans*Length/10^4/2;

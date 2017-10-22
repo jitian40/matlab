@@ -9,7 +9,7 @@ Phi=0:5/180*pi:2*pi;
 %≤Ó÷µ¥¶¿Ì
 theta_i=0:0.1/180*pi:pi;
 phi_i=0:0.1/180*pi:2*pi;
-mwsprojName = 'Round_patch.cst';
+mwsprojName = 'unit 30.cst';
 e=get_farfiled(mwsprojName);
 e1=interp2(Theta,Phi,e,theta_i,phi_i','spline');
 Nx=4;

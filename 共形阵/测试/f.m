@@ -15,7 +15,7 @@ function F = f( theta,phi,I_phi,I_im,et )
                 d_z=2*d_busbar(Zi)./sqrt(5);%计算Zn
                 en=(Ai-1)*4+Zi;
                 ft=et(180*(en-1)+1:180*en,:);
-                e=e+I_i*ft.*exp(1i*(2*pi/15.*(sind(theta).*cosd(phi-zarc).*(R-d_z/2)+d_z.*cosd(theta))+phi_i));%方向图函数的复数域的叠加(matlab可以直接计算复数)s
+                e=e+I_i*ft.*exp(1i*(2*pi/15.*(sind(theta).*cosd(phi-zarc).*(R-d_z/2)+d_z.*cosd(theta))+phi_i+pi/2));%方向图函数的复数域的叠加(matlab可以直接计算复数)s
 %                 e=e+xchange(zarc,Phi_Y,theta,phi,phi_i,d_z,R);%方向图函数的复数域的叠加(matlab可以直接计算复数)
             end
         end
