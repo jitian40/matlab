@@ -4,7 +4,6 @@ function unit_fun=unit_antenna(theta,phi)
   theta1=roundn(theta,-1);
   phi1=roundn(phi,-1);
   phi1(phi1<=0)=phi1(phi1<=0)+360;
-  theta1(theta1==0)=theta1(theta1==0)+0.1;
   thetan=int16(theta1./0.1);
   phin=int16(phi1./0.1);
   mwsprojName = 'unit 30.cst';

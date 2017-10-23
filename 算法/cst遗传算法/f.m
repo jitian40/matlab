@@ -2,7 +2,7 @@
 function F=f(theta,phi,pop,I_phi,et,I_im)%参数包含球坐标下theta角与phi角，激励相位的初始位置，激励相位数组
 %     phi_Z=[0,pi/2,pi,3*pi/2];%单元分布角度
     phi_Z=[0,90,180,270];
-    d_busbar=[4,12,20,28];
+    d_busbar=[0,8,16,24];
     R=20;%底面圆半径
 %     Phi_Y=atand(2);%椎体底角
     e=zeros(180,180);
