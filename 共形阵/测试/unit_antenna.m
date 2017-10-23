@@ -6,7 +6,7 @@ function unit_fun=unit_antenna(theta,phi)
   phi1(phi1<=0)=phi1(phi1<=0)+360;
   thetan=int16(theta1./0.1);
   phin=int16(phi1./0.1);
-  mwsprojName = 'Round_patch.cst';
+  mwsprojName = 'unit 30.cst';
   e=data_manger(mwsprojName);
   [p,t]=size(thetan);
   unit_fun=zeros(p,t);

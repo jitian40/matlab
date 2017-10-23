@@ -4,7 +4,7 @@ function [ CSTResultReader,CSTResultReaderH,mwsProjName,libname] = cst_load(mwsp
 % Load library. The path to these two files must have been made known to matlab.
     DLL_Path = 'C:\Program Files (x86)\CST STUDIO SUITE 2016\';
     HeaderPath = 'C:\Program Files (x86)\CST STUDIO SUITE 2016\ResultReaderDLL\';
-    CST_Path='D:\cst\';
+    CST_Path='D:\cst\myself\';
     libname = 'CSTResultReader';
     if (strcmp(computer, 'PCWIN64')) 
         libname = 'CSTResultReader_AMD64';
