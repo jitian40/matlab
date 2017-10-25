@@ -3,7 +3,7 @@ function e=xchange(zarc,yarc,t,p,zn,R)%µ¥ÔªÌìÏßµÄÅÅÁĞ½Ç¶È£¬²ÎÊı°üº¬Ô²×¶ÌåµÄµ×½Ç£
     Z_arc=zarc+180;
     Y_arc=360-yarc;
 %     ÈÆ×ÅZÖáĞı×ªZ_arc
-    theta_1=-t;
+    theta_1=360-t;
     phi_1=p-Z_arc;
     %ÈÆ×ÅYÖáĞı×ªY_arc;
     theta_2=acosd(cosd(theta_1).*cosd(Y_arc)-sind(theta_1).*cosd(phi_1).*sind(Y_arc));%±ä»¯ºóµÄtheta½Ç
