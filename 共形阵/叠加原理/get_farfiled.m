@@ -2,8 +2,9 @@ function eFun = get_farfiled( mwsprojName )
 %GET_FARFILED 此处显示有关此函数的摘要
 %   此处显示详细说明
 [ CSTResultReader,CSTResultReaderH,mwsProjName,libname] = cst_load(mwsprojName);
+% unloadlibrary(libname)
 loadlibrary(CSTResultReader,CSTResultReaderH);%加载cst dll
-sHandle.m_pProj = 0;
+sHandle.m_pProj = 0; 
 [ret,mwsProjName,sHandle]=calllib(libname,'CST_OpenProject',mwsProjName, sHandle);  %打开cst文件
 nFFM=0;
 [ret,sHandle,nFFM]= calllib(libname, 'CST_GetNumberOfFarfieldMonitors', sHandle, nFFM);%获取远场个数

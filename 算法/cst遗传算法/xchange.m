@@ -3,7 +3,7 @@ function e=xchange(zarc,yarc,t,p)%单元天线的排列角度，参数包含圆锥体的底角，球坐
     Z_arc=zarc+180;
     Y_arc=360-yarc;
 %     绕着Z轴旋转Z_arc
-    theta_1=t;
+    theta_1=360-t;
     phi_1=p-Z_arc;
     %绕着Y轴旋转Y_arc;
     theta_2=acosd(cosd(theta_1).*cosd(Y_arc)-sind(theta_1).*cosd(phi_1).*sind(Y_arc));%变化后的theta角

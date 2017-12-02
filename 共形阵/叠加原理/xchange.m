@@ -1,5 +1,5 @@
 %旋转函数依赖于椎体的旋转函数
-function e=xchange(zarc,yarc,t,p,zn,R)%单元天线的排列角度，参数包含圆锥体的底角，球坐标下theta角与phi角，激励相位，单元的Z坐标值，椎体的底面圆的半径
+function e=xchange(zarc,yarc,t,p)%单元天线的排列角度，参数包含圆锥体的底角，球坐标下theta角与phi角，激励相位，单元的Z坐标值，椎体的底面圆的半径
     Z_arc=zarc+180;
     Y_arc=360-yarc;
 %     绕着Z轴旋转Z_arc

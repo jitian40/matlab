@@ -1,18 +1,13 @@
-function et= unit_fun(theta,phi)
+function et= unit_fun(theta,phi,phi_Z,Phi_Y)
 %UNIT_FUN 此处显示有关此函数的摘要
 %   此处显示详细说明
-    phi_Z=[0,90,180,270];%单元分布角度
-    d_busbar=[0,8,16,24];%单元分布层数
-    R=20;%底面圆半径
-    Phi_Y=90;%椎体底角
-%     Phi_Y=pi/2;%圆柱体
+    busbar_length=4;%母线上的单元数s
     et=zeros(180*16,180);
         for Ai=1:length(phi_Z)%确定层数
          zarc=phi_Z(Ai);%柱坐标下phi角
-            for Zi=1:length(d_busbar)%母线上单元方向图的叠加
-                d_z=d_busbar(Zi);%计算Zn
+            for Zi=1:busbar_length%母线上单元方向图的叠加
                 en=(Ai-1)*4+Zi;
-                et(180*(en-1)+1:180*en,:)=xchange(zarc,Phi_Y,theta,phi,d_z,R);
+                et(180*(en-1)+1:180*en,:)=xchange(zarc,Phi_Y,theta,phi);
             end
         end
 end

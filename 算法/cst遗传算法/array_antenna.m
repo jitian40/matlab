@@ -5,6 +5,10 @@ a=1:1:180;
 b=2:2:360;
 [theta,phi]=meshgrid(a,b);
 trans_val=zeros(length(a),length(b));%一个过渡值存着最优个体
+degree=[0,90,180,270];%单元分布角度
+d_busbar=[0,8,16,24];%单元分布层数
+R=20;%底面圆半径
+bottom_corner=atand(2);%曲面底角
 %定义拟合函数
 % req_e=sin(4*pi.*cos(theta/180*pi))./sin(0.4*pi.*(cosd(theta)-1));
 % req_e=cos(6*theta).*(theta<pi/12);
@@ -27,7 +31,7 @@ gene=0;
 %定义适应度初始值
 fitness=0;
 t=fitness;
-et=unit_fun(theta,phi);
+et=unit_fun(theta,phi,degree,bottom_corner);  %获取每个位置单元贴片的全局方向图函数
 while(gene<generations)
 %将二进制基因转化为十进制基因
 BB=bin_dec(popsize,num,pop);
@@ -36,7 +40,8 @@ I_im=roundn(BB1/(2^7-1),-2);
 I_phi=roundn(BB*(2*pi/(2^7-1)),-2);%求出每个个体的激励相位
 %适应度计算
 for pop1=0:popsize-1
-    rec_fun=f(theta,phi,pop1+1,I_phi,et,I_im);%得到的方向图函数
+%     rec_fun=f(theta,phi,pop1+1,I_phi,et,I_im);%得到的方向图函数
+    rec_fun=f(theta,phi,et,degree,d_busbar,R,bottom_corner,pop1+1,I_phi,I_im);%获取总的方向图函数
 %     fitness=fit(req_fun,rec_fun);
     fitness=para(theta,rec_fun);
     fits(pop1+1)=fitness;
@@ -62,10 +67,18 @@ P_variation=P_variation+0.4/generations;
 gene=gene+1;
 end
 %画图函数，具象化
+    [x,y]=find(trans_val==1);
+    [~,m]=min(abs(trans_val(x:x,1:y)-0.707));
+    [~,n]=min(abs(trans_val(x:x,y:180)-0.707));
+    BWhp=y-m+n;
     X=trans_val.*sind(theta).*cosd(phi);
     Y=trans_val.*sind(theta).*sind(phi);
     Z=trans_val.*cosd(theta);
     mesh(X,Y,Z);
+    xlabel('X');
+    ylabel('Y');
+    zlabel('Z');
+    title({['主波瓣指向\theta=',num2str(y),'\circ',';半功率波瓣宽度BWhp=',num2str(BWhp),'\circ.']});
     
 
 
